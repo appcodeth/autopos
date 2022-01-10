@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="autopos.car" id="car1">
+            <field name="name">รถ Toyota Altis 1.6</field>
+            <field name="reg_name">กจ 1150</field>
+            <field name="brand_id">1</field>
+            <field name="model_id">1</field>
+            <field name="type_id">1</field>
+            <field name="color_id">1</field>
+            <field name="customer_id">1</field>
+        </record>
+    </data>
+</odoo>

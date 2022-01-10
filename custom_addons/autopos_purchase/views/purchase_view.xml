@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_purchase_search">
+        <field name="name">purchase.search</field>
+        <field name="model">autopos.purchase</field>
+        <field name="arch" type="xml">
+            <search string="Purchase Search">
+                <field name="name" string="Name" filter_domain="[('name', 'ilike', self)]"/>
+                <filter name="group_state" string="State" context="{'group_by':'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_purchase_list">
+        <field name="name">purchase.list</field>
+        <field name="model">autopos.purchase</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase List">
+                <field name="name"/>
+                <field name="date_order"/>
+                <field name="supplier_id"/>
+                <field name="amount_total" sum="Total Price"/>
+                <field name="state" widget="badge"
+                       decoration-warning="state == 'draft'"
+                       decoration-success="state == 'paid'"
+                       decoration-info="state == 'receive' or state == 'invoice'"
+                       decoration-danger="state == 'cancel'"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_purchase_form">
+        <field name="name">purchase.form</field>
+        <field name="model">autopos.purchase</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Form">
+                <header attrs="{'invisible': [('id','=',False)]}">
+                    <field name="state" invisible="1"/>
+                    <button string="Receive" class="oe_highlight" type="object" name="do_purchase_receive" attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                    <button string="Cancel" type="object" name="do_purchase_cancel" attrs="{'invisible': [('state', 'in', ['receive','invoice','cancel'])]}"/>
+                    <button string="Email" type="object" name="do_purchase_email" attrs="{'invisible': [('state', 'in', ['cancel'])]}"/>
+                    <button string="Print" type="object" name="do_purchase_print"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" bg_color="bg-danger" title="Cancelled" attrs="{'invisible': [('state', 'not in', ['cancel'])]}"/>
+                    <widget name="web_ribbon" bg_color="bg-success" title="Paid" attrs="{'invisible': [('state', 'not in', ['paid'])]}"/>
+                    <h1 attrs="{'invisible': [('name', '=', False)]}">
+                        <field name="name" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="supplier_id"/>
+                            <field name="address" readonly="1"/>
+                            <field name="tax_id" readonly="1"/>
+                            <field name="branch" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="date_order"/>
+                            <field name="tax_type"/>
+                            <field name="payment_term_id"/>
+                            <field name="date_payment"/>
+                            <field name="ref_rfq"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Purchase Line">
+                            <field name="purchase_line">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="name" invisible="1"/>
+                                    <field name="description"/>
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="price"/>
+                                    <field name="amount" force_save="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                        <group class="no-height">
+                            <field name="discount_type" widget='radio' options="{'horizontal': true}"/>
+                            <field name="remark" placeholder="Add a remark..."/>
+                        </group>
+                        <group class="oe_subtotal_footer oe_right no-height" colspan="2">
+                            <field name="amount_untaxed" force_save="1" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            <field name="discount_rate" attrs="{'invisible': ['|', ('discount_type', 'in', ['amount', 'no']),('discount_type', '=', False)]}"/>
+                            <field name="amount_discount" attrs="{'invisible': ['|', ('discount_type', 'in', ['percent', 'no']),('discount_type', '=', False)]}" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_after_discount" force_save="1" widget='monetary' attrs="{'invisible': ['|', ('discount_type', 'in', ['amount', 'no']),('discount_type', '=', False)]}" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" force_save="1" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" force_save="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_purchase_list">
+        <field name="name">Purchase</field>
+        <field name="res_model">autopos.purchase</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click this to create the first Purchase</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_purchase_list" parent="autopos_purchase.menu_sub_order" name="Purchase Orders" action="action_purchase_list"/>
+</odoo>

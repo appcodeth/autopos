@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_car_brand_list">
+        <field name="name">car_brand.list</field>
+        <field name="model">autopos.car_brand</field>
+        <field name="arch" type="xml">
+            <tree string="Car Brand List">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_car_brand_form">
+        <field name="name">car_brand.form</field>
+        <field name="model">autopos.car_brand</field>
+        <field name="arch" type="xml">
+            <form string="Car Brand Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_car_brand_list">
+        <field name="name">Car Brand</field>
+        <field name="res_model">autopos.car_brand</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click this to create the first car brand</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_car_brand_list" parent="autopos_master.menu_sub_car" name="Car Brand" action="action_car_brand_list"/>
+</odoo>

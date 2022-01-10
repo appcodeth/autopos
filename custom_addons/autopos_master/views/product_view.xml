@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_product_list">
+        <field name="name">product.list</field>
+        <field name="model">autopos.product</field>
+        <field name="arch" type="xml">
+            <tree string="Product List">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="category_id"/>
+                <field name="uom_id"/>
+                <field name="unit_price"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_product_form">
+        <field name="name">product.form</field>
+        <field name="model">autopos.product</field>
+        <field name="arch" type="xml">
+            <form string="Product Form">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Product Name"/>
+                        <h1>
+                            <field name="name" placeholder="Enter product name" required="True"/>
+                        </h1>
+                        <field name="type" widget='radio' options="{'horizontal': true}"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="barcode" attrs="{'invisible': [('type','=','service')]}"/>
+                            <field name="category_id" domain="[('type','=',type)]"/>
+                            <field name="uom_id" attrs="{'invisible': [('type','=','service')]}"/>
+                            <field name="unit_price"/>
+                            <field name="cost_price" attrs="{'invisible': [('type','=','service')]}"/>
+                        </group>
+                        <group>
+                            <field name="stock_qty" attrs="{'invisible': [('type','=','service')], 'readonly': [('id','!=',False)]}"/>
+                            <field name="reorder_qty" attrs="{'invisible': [('type','=','service')]}"/>
+                            <field name="last_purchase_date" attrs="{'invisible': [('type','=','service')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_product_kanban">
+        <field name="name">product.kanban</field>
+        <field name="model">autopos.product</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="image"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('autopos.product','image',record.id.raw_value)" alt="Product"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <h4 style="margin:5px 0">
+                                    <field name="name"/>
+                                </h4>
+                                <div>
+                                    <strong>Type</strong>
+                                    <field name="type"/>
+                                </div>
+                                <div>
+                                    <strong>On-hand</strong>
+                                    <field name="stock_qty"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_product_list">
+        <field name="name">Product</field>
+        <field name="res_model">autopos.product</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click this to create the first product</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_product_list" parent="autopos_master.menu_sub_inventory" name="Product" action="action_product_list"/>
+</odoo>

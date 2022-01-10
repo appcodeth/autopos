@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_car_model_list">
+        <field name="name">car_model.list</field>
+        <field name="model">autopos.car_model</field>
+        <field name="arch" type="xml">
+            <tree string="Car Model List">
+                <field name="name"/>
+                <field name="brand_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_car_model_form">
+        <field name="name">car_model.form</field>
+        <field name="model">autopos.car_model</field>
+        <field name="arch" type="xml">
+            <form string="Car Model Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="year"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="brand_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_car_model_list">
+        <field name="name">Car Model</field>
+        <field name="res_model">autopos.car_model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click this to create the first car model</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_car_model_list" parent="autopos_master.menu_sub_car" name="Car Model" action="action_car_model_list"/>
+</odoo>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_purchase" name="Purchase"/>
+    <menuitem id="menu_sub_order" parent="menu_purchase" name="Orders"/>
+</odoo>

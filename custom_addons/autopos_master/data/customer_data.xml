@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="autopos.customer" id="customer1">
+            <field name="name">คุณสมชัย</field>
+            <field name="phone">082-115-6649</field>
+            <field name="type">personal</field>
+        </record>
+        <record model="autopos.customer" id="customer2">
+            <field name="name">คุณขนิษฐา</field>
+            <field name="phone">084-115-1189</field>
+            <field name="type">personal</field>
+        </record>
+    </data>
+</odoo>

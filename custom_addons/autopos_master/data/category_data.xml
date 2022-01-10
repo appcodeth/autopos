@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="autopos.category" id="category1">
+            <field name="name">ชุดอุปกรณ์ล้าง</field>
+            <field name="type">product</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category2">
+            <field name="name">น้ำยาเคลือบเบาะ</field>
+            <field name="type">product</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category3">
+            <field name="name">น้ำยาเคลือบล้อ</field>
+            <field name="type">product</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category4">
+            <field name="name">ชุดห้องโดยสาร</field>
+            <field name="type">product</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category5">
+            <field name="name">น้ำยาฆ่าเชื้อ</field>
+            <field name="type">product</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category6">
+            <field name="name">ล้างสี ดูดฝุ่น</field>
+            <field name="type">service</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category7">
+            <field name="name">งานอบโอโซน</field>
+            <field name="type">service</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category8">
+            <field name="name">งานเคลือบ</field>
+            <field name="type">service</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category9">
+            <field name="name">สำหรับรถตู้</field>
+            <field name="type">service</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category10">
+            <field name="name">สำหรับแท็กซี่</field>
+            <field name="type">service</field>
+            <field name="costing_method">standard</field>
+        </record>
+        <record model="autopos.category" id="category11">
+            <field name="name">สำหรับรถกระบะ</field>
+            <field name="type">service</field>
+            <field name="costing_method">standard</field>
+        </record>
+    </data>
+</odoo>

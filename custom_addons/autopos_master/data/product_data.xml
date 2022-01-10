@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="autopos.product" id="product1">
+            <field name="name">วิน ฟองน้ำสำหรับล้างรถ</field>
+            <field name="code">8851984106736</field>
+            <field name="barcode">8851984106736</field>
+            <field name="type">product</field>
+            <field name="unit_price">30.00</field>
+            <field name="cost_price">15.00</field>
+            <field name="stock_qty">8.00</field>
+            <field name="reorder_qty">5.00</field>
+            <field name="category_id">1</field>
+            <field name="uom_id">1</field>
+        </record>
+        <record model="autopos.product" id="product2">
+            <field name="name">คาร์โกล้ น้ำยาล้างรถและเคลือบสีรถ 454 กรัม</field>
+            <field name="code">8850360231017</field>
+            <field name="barcode">8850360231017</field>
+            <field name="type">product</field>
+            <field name="unit_price">99.00</field>
+            <field name="cost_price">50.00</field>
+            <field name="stock_qty">5.00</field>
+            <field name="reorder_qty">5.00</field>
+            <field name="category_id">2</field>
+            <field name="uom_id">1</field>
+        </record>
+        <record model="autopos.product" id="product3">
+            <field name="name">กี่วี่ โฟมทำความสะอาดยางรถยนต์ ขนาด 400 กรัม</field>
+            <field name="code">8850175082477</field>
+            <field name="barcode">8850175082477</field>
+            <field name="type">product</field>
+            <field name="unit_price">139.00</field>
+            <field name="cost_price">90.00</field>
+            <field name="stock_qty">5.00</field>
+            <field name="reorder_qty">5.00</field>
+            <field name="category_id">2</field>
+            <field name="uom_id">1</field>
+        </record>
+        <record model="autopos.product" id="product4">
+            <field name="name">บัดดี้ ถาดยางปูพื้น หลังแคป</field>
+            <field name="code">8851273004637</field>
+            <field name="barcode">8851273004637</field>
+            <field name="type">product</field>
+            <field name="unit_price">129.00</field>
+            <field name="cost_price">90.00</field>
+            <field name="stock_qty">5.00</field>
+            <field name="reorder_qty">5.00</field>
+            <field name="category_id">2</field>
+            <field name="uom_id">1</field>
+        </record>
+        <record model="autopos.product" id="product5">
+            <field name="name">คาร์ไชน์ แชมพูล้างรถ กลิ่นพฤกษา 1000 มล.</field>
+            <field name="code">8852265310323</field>
+            <field name="barcode">8852265310323</field>
+            <field name="type">product</field>
+            <field name="unit_price">89.00</field>
+            <field name="cost_price">50.00</field>
+            <field name="stock_qty">4.00</field>
+            <field name="reorder_qty">5.00</field>
+            <field name="category_id">1</field>
+            <field name="uom_id">1</field>
+        </record>
+        <record model="autopos.product" id="product6">
+            <field name="name">คาร์ชายน์ ผ้าไมโครไฟเบอร์ แพ็ค 3</field>
+            <field name="code">8852265857330</field>
+            <field name="barcode">8852265857330</field>
+            <field name="type">product</field>
+            <field name="unit_price">169.00</field>
+            <field name="cost_price">100.00</field>
+            <field name="stock_qty">2.00</field>
+            <field name="reorder_qty">5.00</field>
+            <field name="category_id">1</field>
+            <field name="uom_id">1</field>
+        </record>
+        <record model="autopos.product" id="product7">
+            <field name="name">ดิฟฟ์ อีโค ไทร์ไชน์ ผลิตภัณฑ์เคลือบเงายาง 300 มล.</field>
+            <field name="code">8851984158315</field>
+            <field name="barcode">8851984158315</field>
+            <field name="type">product</field>
+            <field name="unit_price">89.00</field>
+            <field name="cost_price">50.00</field>
+            <field name="stock_qty">1.00</field>
+            <field name="reorder_qty">2.00</field>
+            <field name="category_id">3</field>
+            <field name="uom_id">1</field>
+        </record>
+    </data>
+</odoo>

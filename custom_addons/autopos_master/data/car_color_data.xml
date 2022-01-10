@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="autopos.car_color" id="car_color1">
+            <field name="name">สีขาว (White)</field>
+        </record>
+        <record model="autopos.car_color" id="car_color2">
+            <field name="name">สีดำ (Black)</field>
+        </record>
+        <record model="autopos.car_color" id="car_color3">
+            <field name="name">สีเทา (Gray)</field>
+        </record>
+        <record model="autopos.car_color" id="car_color4">
+            <field name="name">สีเงิน (Silver)</field>
+        </record>
+        <record model="autopos.car_color" id="car_color5">
+            <field name="name">สีแดง (Red)</field>
+        </record>
+        <record model="autopos.car_color" id="car_color6">
+            <field name="name">สีเขียว-เหลือง (Green Yellow)</field>
+        </record>
+    </data>
+</odoo>

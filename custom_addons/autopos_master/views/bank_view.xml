@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_bank_list">
+        <field name="name">bank.list</field>
+        <field name="model">autopos.bank</field>
+        <field name="arch" type="xml">
+            <tree string="Bank List">
+                <field name="name"/>
+                <field name="short_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_bank_form">
+        <field name="name">bank.form</field>
+        <field name="model">autopos.bank</field>
+        <field name="arch" type="xml">
+            <form string="Bank Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="short_name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_bank_list">
+        <field name="name">Bank</field>
+        <field name="res_model">autopos.bank</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click this to create the first bank</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_bank_list" parent="autopos_master.menu_sub_account" name="Bank" action="action_bank_list"/>
+</odoo>

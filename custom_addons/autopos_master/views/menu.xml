@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_master" name="Master"/>
+    <menuitem id="menu_sub_car" parent="menu_master" name="Cars"/>
+    <menuitem id="menu_sub_contact" parent="menu_master" name="Contacts"/>
+    <menuitem id="menu_sub_account" parent="menu_master" name="Accounts"/>
+    <menuitem id="menu_sub_inventory" parent="menu_master" name="Inventory"/>
+</odoo>

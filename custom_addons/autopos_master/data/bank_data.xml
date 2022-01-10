@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="autopos.bank" id="bank1">
+            <field name="name">ธนาคารกสิกรไทย</field>
+            <field name="short_name">KBANK</field>
+        </record>
+        <record model="autopos.bank" id="bank2">
+            <field name="name">ธนาคารไทยพาณิชย์</field>
+            <field name="short_name">SCB</field>
+        </record>
+        <record model="autopos.bank" id="bank3">
+            <field name="name">ธนาคารกรุงเทพ</field>
+            <field name="short_name">BBA</field>
+        </record>
+        <record model="autopos.bank" id="bank4">
+            <field name="name">ธนาคารกรุงไทย</field>
+            <field name="short_name">KTB</field>
+        </record>
+        <record model="autopos.bank" id="bank5">
+            <field name="name">ธนาคารไทยธนชาติ</field>
+            <field name="short_name">TMB</field>
+        </record>
+    </data>
+</odoo>

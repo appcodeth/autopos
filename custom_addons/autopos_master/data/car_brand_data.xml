@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="autopos.car_brand" id="car_brand1">
+            <field name="name">Toyota</field>
+        </record>
+        <record model="autopos.car_brand" id="car_brand2">
+            <field name="name">Honda</field>
+        </record>
+        <record model="autopos.car_brand" id="car_brand3">
+            <field name="name">Misubishi</field>
+        </record>
+        <record model="autopos.car_brand" id="car_brand4">
+            <field name="name">Nissan</field>
+        </record>
+        <record model="autopos.car_brand" id="car_brand5">
+            <field name="name">Ford</field>
+        </record>
+        <record model="autopos.car_brand" id="car_brand6">
+            <field name="name">Mazda</field>
+        </record>
+        <record model="autopos.car_brand" id="car_brand7">
+            <field name="name">Benz</field>
+        </record>
+        <record model="autopos.car_brand" id="car_brand8">
+            <field name="name">BMW</field>
+        </record>
+        <record model="autopos.car_brand" id="car_brand9">
+            <field name="name">MG</field>
+        </record>
+        <record model="autopos.car_brand" id="car_brand10">
+            <field name="name">Isuzu</field>
+        </record>
+    </data>
+</odoo>

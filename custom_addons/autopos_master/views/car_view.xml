@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_car_list">
+        <field name="name">car.list</field>
+        <field name="model">autopos.car</field>
+        <field name="arch" type="xml">
+            <tree string="Car List">
+                <field name="name"/>
+                <field name="reg_name"/>
+                <field name="customer_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_car_form">
+        <field name="name">car.form</field>
+        <field name="model">autopos.car</field>
+        <field name="arch" type="xml">
+            <form string="Car Form">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Car Name"/>
+                        <h1>
+                            <field name="name" placeholder="Enter car name" required="True"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="brand_id"/>
+                            <field name="model_id" domain="[('brand_id','=',brand_id)]"/>
+                            <field name="color_id"/>
+                            <field name="type_id"/>
+                        </group>
+                        <group>
+                            <field name="reg_name"/>
+                            <field name="customer_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_car_kanban">
+        <field name="name">car.kanban</field>
+        <field name="model">autopos.car</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="image"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('autopos.car','image',record.id.raw_value)" alt="Car"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <h4 style="margin:5px 0">
+                                    <field name="name"/>
+                                </h4>
+                                <div>
+                                    <strong>Owner</strong>
+                                    <field name="customer_id"/>
+                                </div>
+                                <div>
+                                    <strong>Reg Name</strong>
+                                    <field name="reg_name"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_car_list">
+        <field name="name">Car</field>
+        <field name="res_model">autopos.car</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click this to create the first car</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_car_list" parent="autopos_master.menu_sub_car" name="Car" action="action_car_list"/>
+</odoo>

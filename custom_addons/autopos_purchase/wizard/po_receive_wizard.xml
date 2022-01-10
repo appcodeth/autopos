@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_po_receive_wizard" model="ir.ui.view">
+        <field name="name">Confirm Reveive</field>
+        <field name="model">autopos.po.receive.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirm">
+                <group>
+                    <strong>
+                        Do you want to receive
+                        <field name="po_name" readonly="1"/>
+                        ?
+                    </strong>
+                </group>
+                <footer>
+                    <button string="OK" name="do_confirm_receive" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
+

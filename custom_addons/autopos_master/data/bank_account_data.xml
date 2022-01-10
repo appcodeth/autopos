@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="autopos.bank_account" id="bank_account1">
+            <field name="account_name">บัญชีมายคาร์ KB</field>
+            <field name="account_no">146-2-0080-2</field>
+            <field name="bank_id">1</field>
+            <field name="bank_branch">บิ๊กซี แจ้งวัฒนะ</field>
+            <field name="bank_type">saving</field>
+        </record>
+        <record model="autopos.bank_account" id="bank_account2">
+            <field name="account_name">บัญชีมายคาร์ BBA</field>
+            <field name="account_no">002-1-0080-4</field>
+            <field name="bank_id">3</field>
+            <field name="bank_branch">ตลาดพระประแดง</field>
+            <field name="bank_type">saving</field>
+        </record>
+    </data>
+</odoo>
