@@ -41,3 +41,6 @@ access_product_manager,autopos.product,model_autopos_product,group_master_manage
 access_supplier_all,autopos.supplier,model_autopos_supplier,base.group_user,1,0,0,0
 access_supplier_user,autopos.supplier,model_autopos_supplier,group_master_user,1,0,0,0
 access_supplier_manager,autopos.supplier,model_autopos_supplier,group_master_manager,1,1,1,1
+access_stock_move_all,autopos.stock_move,model_autopos_stock_move,base.group_user,1,0,0,0
+access_stock_move_user,autopos.stock_move,model_autopos_stock_move,group_master_user,1,0,0,0
+access_stock_move_manager,autopos.stock_move,model_autopos_stock_move,group_master_manager,1,1,1,1
