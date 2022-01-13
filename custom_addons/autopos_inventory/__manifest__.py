@@ -13,8 +13,11 @@
         'data/sequence.xml',
         'views/menu.xml',
         'views/receive_view.xml',
+        'views/delivery_view.xml',
         'wizard/receive_cancel_wizard.xml',
         'wizard/receive_approve_wizard.xml',
+        'wizard/delivery_cancel_wizard.xml',
+        'wizard/delivery_approve_wizard.xml',
     ],
     'demo': [],
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="mail.template" id="mail_template_quotation_form">
+            <field name="name">Quotation by Email</field>
+            <field name="email_from">${(object.create_uid.email or '')|safe}</field>
+            <field name="subject">${object.customer_id.name} Sale (Ref ${object.name or 'n/a' })</field>
+            <field name="partner_to">${object.customer_id.id}</field>
+            <field name="model_id" ref="autopos_sale.model_autopos_quotation"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="action_report_quotation"/>
+            <field name="report_name">${(object.name or '').replace('/','_')}</field>
+            <field name="lang">${object.customer_id.lang}</field>
+            <field name="body_html" type="xml">
+                <p>Dear ${object.customer_id.name}</p>
+                <p>
+                    Here is your quotation
+                    <strong>${object.name}</strong>
+                </p>
+                <p>You can reply to this email if you have any questions.</p>
+                <p>Thank you</p>
+            </field>
+        </record>
+
+        <record model="mail.template" id="mail_template_sale_form">
+            <field name="name">Sale by Email</field>
+            <field name="email_from">${(object.create_uid.email or '')|safe}</field>
+            <field name="subject">${object.customer_id.name} Sale (Ref ${object.name or 'n/a' })</field>
+            <field name="partner_to">${object.customer_id.id}</field>
+            <field name="model_id" ref="autopos_sale.model_autopos_sale"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="action_report_sale"/>
+            <field name="report_name">${(object.name or '').replace('/','_')}</field>
+            <field name="lang">${object.customer_id.lang}</field>
+            <field name="body_html" type="xml">
+                <p>Dear ${object.customer_id.name}</p>
+                <p>
+                    Here is your sale
+                    <strong>${object.name}</strong>
+                </p>
+                <p>You can reply to this email if you have any questions.</p>
+                <p>Thank you</p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,64 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record model="ir.ui.view" id="view_receive_search">
-        <field name="name">receive.search</field>
-        <field name="model">autopos.receive</field>
+    <record model="ir.ui.view" id="view_quotation_search">
+        <field name="name">quotation.search</field>
+        <field name="model">autopos.quotation</field>
         <field name="arch" type="xml">
-            <search string="Receive Search">
+            <search string="Quotation Search">
                 <field name="name" string="Name" filter_domain="[('name', 'ilike', self)]"/>
                 <filter name="group_state" string="State" context="{'group_by':'state'}"/>
             </search>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_receive_list">
-        <field name="name">receive.list</field>
-        <field name="model">autopos.receive</field>
+    <record model="ir.ui.view" id="view_quotation_list">
+        <field name="name">quotation.list</field>
+        <field name="model">autopos.quotation</field>
         <field name="arch" type="xml">
-            <tree string="Receive List">
+            <tree string="Quotation List">
                 <field name="name"/>
-                <field name="date_receive"/>
-                <field name="supplier_id"/>
+                <field name="date_order"/>
+                <field name="customer_id"/>
                 <field name="amount_total" sum="Total Price"/>
                 <field name="state" widget="badge"
                        decoration-warning="state == 'draft'"
-                       decoration-success="state == 'complete'"
+                       decoration-success="state == 'approve'"
                        decoration-danger="state == 'cancel'"
                 />
             </tree>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_receive_form">
-        <field name="name">receive.form</field>
-        <field name="model">autopos.receive</field>
+    <record model="ir.ui.view" id="view_quotation_form">
+        <field name="name">quotation.form</field>
+        <field name="model">autopos.quotation</field>
         <field name="arch" type="xml">
-            <form string="Receive Form">
+            <form string="Quotation Form">
                 <header attrs="{'invisible': [('id','=',False)]}">
                     <field name="state" invisible="1"/>
-                    <button string="Approve" class="oe_highlight" type="object" name="do_receive_approve" attrs="{'invisible': [('state', 'in', ['complete','cancel'])]}"/>
-                    <button string="Cancel" type="object" name="do_receive_cancel" attrs="{'invisible': [('state', 'in', ['complete','cancel'])]}"/>
-                    <button string="Print" type="object" name="do_receive_print"/>
+                    <button string="Approve" class="oe_highlight" type="object" name="do_quotation_approve" attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                    <button string="Cancel" type="object" name="do_quotation_cancel" attrs="{'invisible': [('state', 'in', ['approve','cancel'])]}"/>
+                    <button string="Email" type="object" name="do_quotation_email" attrs="{'invisible': [('state', 'in', ['cancel'])]}"/>
+                    <button string="Print" type="object" name="do_quotation_print"/>
                 </header>
                 <sheet>
                     <widget name="web_ribbon" bg_color="bg-danger" title="Cancelled" attrs="{'invisible': [('state', 'not in', ['cancel'])]}"/>
-                    <widget name="web_ribbon" bg_color="bg-success" title="Completed" attrs="{'invisible': [('state', 'not in', ['complete'])]}"/>
+                    <widget name="web_ribbon" bg_color="bg-success" title="Approved" attrs="{'invisible': [('state', 'not in', ['approve'])]}"/>
                     <h1 attrs="{'invisible': [('name', '=', False)]}">
                         <field name="name" readonly="1"/>
                     </h1>
                     <group>
                         <group>
-                            <field name="purchase_id"/>
-                            <field name="supplier_id"/>
+                            <field name="customer_id"/>
+                            <field name="address" readonly="1"/>
+                            <field name="tax_id" readonly="1"/>
+                            <field name="branch" readonly="1"/>
                         </group>
                         <group>
-                            <field name="date_receive"/>
+                            <field name="date_order"/>
                             <field name="tax_type"/>
+                            <field name="payment_term_id"/>
+                            <field name="date_payment"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Receive Line">
-                            <field name="receive_line">
+                        <page string="Quotation Line">
+                            <field name="quotation_line">
                                 <tree editable="bottom">
                                     <field name="product_id"/>
                                     <field name="name" invisible="1"/>
@@ -93,14 +98,14 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_receive_list">
-        <field name="name">Receive</field>
-        <field name="res_model">autopos.receive</field>
+    <record model="ir.actions.act_window" id="action_quotation_list">
+        <field name="name">Quotation</field>
+        <field name="res_model">autopos.quotation</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">Click this to create the first receive</p>
+            <p class="oe_view_nocontent_create">Click this to create the first Quotation</p>
         </field>
     </record>
 
-    <menuitem id="menu_receive_list" parent="autopos_inventory.menu_sub_operation" name="Receive" action="action_receive_list"/>
+    <menuitem id="menu_quotation_list" parent="autopos_sale.menu_sub_order" name="Quotation" action="action_quotation_list"/>
 </odoo>

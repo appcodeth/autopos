@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="sale_report_common" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link href="/autopos_sale/static/src/css/font.css" rel="stylesheet"/>
+            <link href="/autopos_sale/static/src/css/report_style.css" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+    <record model="ir.actions.report" id="action_report_quotation">
+        <field name="name">Quotation Form</field>
+        <field name="model">autopos.quotation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">autopos_sale.quotation_form</field>
+        <field name="report_file">autopos_sale.quotation_form</field>
+        <field name="paperformat_id" ref="autopos_sale.paperformat_sale"/>
+        <field name="print_report_name">'Quotation - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="autopos_sale.model_autopos_quotation"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="quotation_form">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <t t-call="autopos_sale.quotation_report"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="quotation_report">
+        <t t-call="autopos_sale.quotation_report_header"/>
+        <t t-call="autopos_sale.quotation_report_master"/>
+        <t t-call="autopos_sale.quotation_report_body"/>
+        <t t-call="autopos_sale.quotation_report_footer"/>
+    </template>
+
+    <template id="quotation_report_header">
+        <div class="row no-gutters report-header mb-3">
+            <div class="col-2">
+                <img src='/web/binary/company_logo' style="width:99%"/>
+            </div>
+            <div class="col-7">
+                <strong>
+                    <span t-esc="o.company_id.name"/>
+                </strong>
+                <!-- @formatter:off -->
+                <div class="sub-text mr-2" t-if="o.company_id.street">
+                    <span class="mr-1">
+                        <span t-esc="o.company_id.street"/>
+                        <span t-esc="o.company_id.street2"/>
+                    </span>
+                    <span class="mr-1" t-if="o.company_id.phone">
+                        โทร.
+                        <span t-esc="o.company_id.phone"/>
+                    </span>
+                    <!--
+                    <span class="mr-2" t-if="o.company_id.fax">
+                        แฟ็กซ์
+                        <span t-esc="o.company_id.fax"/>
+                    </span>
+                    -->
+                </div>
+                <div class="sub-text mr-2" t-if="o.company_id.vat">
+                    <span class="mr-1">
+                        เลขประจำตัวผู้เสียภาษี :
+                        <span t-esc="o.company_id.vat"/>
+                        ( สำนักงานใหญ่ )
+                    </span>
+                </div>
+                <!-- @formatter:on -->
+            </div>
+            <div class="col-3">
+                <div class="bg-success py-2 px-4 text-center mb-2" style="border-radius:6px">
+                    <h4 class="mb-0">ใบเสนอราคา</h4>
+                    <div>Quotation</div>
+                </div>
+                <div class="text-right" style="margin-bottom:15px">
+                    <div>
+                        <strong>ต้นฉบับ / Original</strong>
+                    </div>
+                    <div>
+                        <strong>เลขที่ :</strong>
+                        <span class="ml-3">
+                            <span t-esc="o.name"/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="quotation_report_master">
+        <div class="box-rounded mb-2">
+            <!-- @formatter:off -->
+            <table class="table-layout">
+                <tr>
+                    <td width="50%" rowspan="2">
+                        <div class="row no-gutters mb-2">
+                            <div class="col-3">
+                                <div>ลูกค้า</div>
+                                <div class="small">Customer</div>
+                            </div>
+                            <div class="col-9">
+                                <span t-esc="o.customer_id.name"/>
+                            </div>
+                        </div>
+                        <div class="row no-gutters mb-2">
+                            <div class="col-3">
+                                <div>เลขที่ผู้เสียภาษี</div>
+                                <div class="small">Tax ID</div>
+                            </div>
+                            <div class="col-9">
+                                <span t-esc="o.customer_id.tax_id"/>
+                                ( <span t-esc="o.customer_id.branch"/> )
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-3">
+                                <div>ที่อยู่</div>
+                                <div class="small">Address</div>
+                            </div>
+                            <div class="col-9">
+                                <span t-esc="o.customer_id.address"/>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="25%">
+                        <div class="row no-gutters mb-2">
+                            <div class="col-6">
+                                <div>วันที่ :</div>
+                                <div class="small">Date</div>
+                            </div>
+                            <div class="col-6">
+                                <span class="ml-2">
+                                    <span t-esc="o.date_order.strftime('%d/%m/%Y')"/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row no-gutters mb-2">
+                            <div class="col-6">
+                                <div>เครดิต :</div>
+                                <div class="small">Credit Term</div>
+                            </div>
+                            <div class="col-6">
+                                <span class="ml-2">
+                                    <span t-esc="o.payment_term_id.name"/>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-6">
+                                <div>ครบกำหนด :</div>
+                                <div class="small">Due Date</div>
+                            </div>
+                            <div class="col-6">
+                                <span class="ml-2">
+                                    <span t-esc="o.date_payment.strftime('%d/%m/%Y')"/>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="25%">
+                        <div class="row no-gutters">
+                            <div class="col-12">
+                                <div>ผู้ติดต่อ :</div>
+                                <div class="small">Contact Name</div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <span/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" colspan="2">
+                        <div class="row no-gutters">
+                            <div class="col-5">
+                                <div>โปรเจ็กต์ :</div>
+                                <div class="small">Project</div>
+                            </div>
+                            <div class="col-7">
+                                <div class="ml-2">
+                                    <span/>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <!-- @formatter:on -->
+        </div>
+    </template>
+
+    <template id="quotation_report_body">
+        <div id="table-wrapper" class="mb-2">
+            <table class="table-bill-header">
+                <thead>
+                    <tr>
+                        <th>
+                            <div>ลำดับ</div>
+                            <div class="small">No.</div>
+                        </th>
+                        <th>
+                            <div>รายการ</div>
+                            <div class="small">Description</div>
+                        </th>
+                        <th>
+                            <div>จำนวน</div>
+                            <div class="small">Quantity</div>
+                        </th>
+                        <th>
+                            <div>หน่วยนับ</div>
+                            <div class="small">Unit</div>
+                        </th>
+                        <th>
+                            <div>ราคา/หน่วย</div>
+                            <div class="small">Unit Price</div>
+                        </th>
+                        <th>
+                            <div>จำนวนเงิน</div>
+                            <div class="small">Amount</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td/>
+                        <td/>
+                        <td/>
+                        <td/>
+                        <td/>
+                        <td/>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table-bill-body">
+                <tbody>
+                    <t t-foreach="o.quotation_line" t-as="l">
+                        <tr>
+                            <td>
+                                <span t-esc="l_index + 1"/>
+                            </td>
+                            <td>
+                                <div t-esc="l.name"/>
+                                <div class="small" t-if="l.description">
+                                    <span t-esc="l.description"/>
+                                </div>
+                            </td>
+                            <td>
+                                <span t-esc="'{0:,.2f}'.format(l.qty)"/>
+                            </td>
+                            <td>
+                                <span t-esc="l.uom_id.name"/>
+                            </td>
+                            <td>
+                                <span t-esc="'{0:,.2f}'.format(l.price)"/>
+                            </td>
+                            <td>
+                                <span t-esc="'{0:,.2f}'.format(l.amount)"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+        <div class="bill-footer">
+            <table class="table-bill-footer">
+                <tr>
+                    <td colspan="3" rowspan="10">
+                        <div>จำนวนเงิน / Amount</div>
+                        <div class="bg-light py-2 px-3 text-center mt-2 mb-4">
+                            <span t-esc="o.get_baht_text()"/>
+                        </div>
+                        <div>หมายเหตุ / Remark</div>
+                        <div class="small" style="font-weight:normal" t-esc="o.remark"/>
+                    </td>
+                    <td class="text-right px-2" style="width: 15%">
+                        <div>รวมเป็นเงิน</div>
+                        <div class="small">Subtotal</div>
+                    </td>
+                    <td style="width: 15%">
+                        <span t-esc="'{0:,.2f}'.format(o.amount_untaxed)"/>
+                    </td>
+                </tr>
+                <tr t-if="o.discount_type=='percent' and o.discount_rate">
+                    <td class="text-right px-1">
+                        <div>ส่วนลด<span t-esc="'{0:,.0f}'.format(o.discount_rate)"/>%
+                        </div>
+                        <div class="small">Discount</div>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="'{0:,.2f}'.format(o.amount_untaxed - o.amount_after_discount)"/>
+                    </td>
+                </tr>
+                <tr t-if="o.discount_type=='amount' and o.amount_discount">
+                    <td class="text-right px-1">
+                        <div>ส่วนลด</div>
+                        <div class="small">Discount</div>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="'{0:,.2f}'.format(o.amount_discount)"/>
+                    </td>
+                </tr>
+                <tr t-if="o.discount_type=='percent' and o.amount_after_discount">
+                    <td class="text-right px-1">
+                        <div>ยอดรวมหลังหักส่วนลด</div>
+                        <div class="small">Price Discount</div>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="'{0:,.2f}'.format(o.amount_after_discount)"/>
+                    </td>
+                </tr>
+                <tr t-if="o.discount_type=='amount' and o.amount_discount">
+                    <td class="text-right px-1">
+                        <div>ยอดรวมหลังหักส่วนลด</div>
+                        <div class="small">Price Discount</div>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="'{0:,.2f}'.format(o.amount_untaxed - o.amount_discount)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right px-1">
+                        <div>ภาษีมูลค่าเพิ่ม 7%</div>
+                        <div class="small">Value Added Tax</div>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="'{0:,.2f}'.format(o.amount_tax)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right px-1">
+                        <div>จำนวนเงินรวมทั้งสิ้น</div>
+                        <div class="small">Total</div>
+                    </td>
+                    <td class="text-right">
+                        <span t-esc="'{0:,.2f}'.format(o.amount_total)"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="quotation_report_footer">
+        <div class="bill-sign mt-3">
+            <table class="table-bill-sign">
+                <tr>
+                    <td>
+                        <div class="line">&amp;nbsp;</div>
+                        <div>ผู้ตรวจสอบ / Approver</div>
+                        <div>
+                            <span>วันที่ / Date</span>
+                            <span class="date-line"/>
+                        </div>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="line">&amp;nbsp;</div>
+                        <div>ผู้มีอำนาจลงนาม / Authorized Signature</div>
+                        <div>
+                            <span>วันที่ / Date</span>
+                            <span class="date-line" t-esc="o.date_order.strftime('%d/%m/%Y')"/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+</odoo>

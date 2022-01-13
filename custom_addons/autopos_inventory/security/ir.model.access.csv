@@ -11,3 +11,15 @@ access_receive_approve_wizard_manager,autopos.receive.approve.wizard,model_autop
 access_receive_cancel_wizard_all,autopos.receive.cancel.wizard,model_autopos_receive_cancel_wizard,base.group_user,1,0,0,0
 access_receive_cancel_wizard_user,autopos.receive.cancel.wizard,model_autopos_receive_cancel_wizard,group_inventory_user,1,0,0,0
 access_receive_cancel_wizard_manager,autopos.receive.cancel.wizard,model_autopos_receive_cancel_wizard,group_inventory_manager,1,1,1,1
+access_delivery_all,autopos.delivery,model_autopos_delivery,base.group_user,1,0,0,0
+access_delivery_user,autopos.delivery,model_autopos_delivery,group_inventory_user,1,0,0,0
+access_delivery_manager,autopos.delivery,model_autopos_delivery,group_inventory_manager,1,1,1,1
+access_delivery_line_all,autopos.delivery_line,model_autopos_delivery_line,base.group_user,1,0,0,0
+access_delivery_line_user,autopos.delivery_line,model_autopos_delivery_line,group_inventory_user,1,0,0,0
+access_delivery_line_manager,autopos.delivery_line,model_autopos_delivery_line,group_inventory_manager,1,1,1,1
+access_delivery_approve_wizard_all,autopos.delivery.approve.wizard,model_autopos_delivery_approve_wizard,base.group_user,1,0,0,0
+access_delivery_approve_wizard_user,autopos.delivery.approve.wizard,model_autopos_delivery_approve_wizard,group_inventory_user,1,0,0,0
+access_delivery_approve_wizard_manager,autopos.delivery.approve.wizard,model_autopos_delivery_approve_wizard,group_inventory_manager,1,1,1,1
+access_delivery_cancel_wizard_all,autopos.delivery.cancel.wizard,model_autopos_delivery_cancel_wizard,base.group_user,1,0,0,0
+access_delivery_cancel_wizard_user,autopos.delivery.cancel.wizard,model_autopos_delivery_cancel_wizard,group_inventory_user,1,0,0,0
+access_delivery_cancel_wizard_manager,autopos.delivery.cancel.wizard,model_autopos_delivery_cancel_wizard,group_inventory_manager,1,1,1,1

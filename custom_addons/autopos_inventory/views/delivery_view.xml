@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record model="ir.ui.view" id="view_receive_search">
-        <field name="name">receive.search</field>
-        <field name="model">autopos.receive</field>
+    <record model="ir.ui.view" id="view_delivery_search">
+        <field name="name">delivery.search</field>
+        <field name="model">autopos.delivery</field>
         <field name="arch" type="xml">
-            <search string="Receive Search">
+            <search string="Delivery Search">
                 <field name="name" string="Name" filter_domain="[('name', 'ilike', self)]"/>
                 <filter name="group_state" string="State" context="{'group_by':'state'}"/>
             </search>
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_receive_list">
-        <field name="name">receive.list</field>
-        <field name="model">autopos.receive</field>
+    <record model="ir.ui.view" id="view_delivery_list">
+        <field name="name">delivery.list</field>
+        <field name="model">autopos.delivery</field>
         <field name="arch" type="xml">
-            <tree string="Receive List">
+            <tree string="Delivery List">
                 <field name="name"/>
-                <field name="date_receive"/>
-                <field name="supplier_id"/>
+                <field name="date_delivery"/>
+                <field name="customer_id"/>
                 <field name="amount_total" sum="Total Price"/>
                 <field name="state" widget="badge"
                        decoration-warning="state == 'draft'"
@@ -29,16 +29,16 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_receive_form">
-        <field name="name">receive.form</field>
-        <field name="model">autopos.receive</field>
+    <record model="ir.ui.view" id="view_delivery_form">
+        <field name="name">delivery.form</field>
+        <field name="model">autopos.delivery</field>
         <field name="arch" type="xml">
-            <form string="Receive Form">
+            <form string="Delivery Form">
                 <header attrs="{'invisible': [('id','=',False)]}">
                     <field name="state" invisible="1"/>
-                    <button string="Approve" class="oe_highlight" type="object" name="do_receive_approve" attrs="{'invisible': [('state', 'in', ['complete','cancel'])]}"/>
-                    <button string="Cancel" type="object" name="do_receive_cancel" attrs="{'invisible': [('state', 'in', ['complete','cancel'])]}"/>
-                    <button string="Print" type="object" name="do_receive_print"/>
+                    <button string="Approve" class="oe_highlight" type="object" name="do_delivery_approve" attrs="{'invisible': [('state', 'in', ['complete','cancel'])]}"/>
+                    <button string="Cancel" type="object" name="do_delivery_cancel" attrs="{'invisible': [('state', 'in', ['complete','cancel'])]}"/>
+                    <button string="Print" type="object" name="do_delivery_print"/>
                 </header>
                 <sheet>
                     <widget name="web_ribbon" bg_color="bg-danger" title="Cancelled" attrs="{'invisible': [('state', 'not in', ['cancel'])]}"/>
@@ -48,17 +48,17 @@
                     </h1>
                     <group>
                         <group>
-                            <field name="purchase_id"/>
-                            <field name="supplier_id"/>
+                            <field name="sale_id"/>
+                            <field name="customer_id"/>
                         </group>
                         <group>
-                            <field name="date_receive"/>
+                            <field name="date_delivery"/>
                             <field name="tax_type"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Receive Line">
-                            <field name="receive_line">
+                        <page string="Delivery Line">
+                            <field name="delivery_line">
                                 <tree editable="bottom">
                                     <field name="product_id"/>
                                     <field name="name" invisible="1"/>
@@ -93,14 +93,14 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_receive_list">
-        <field name="name">Receive</field>
-        <field name="res_model">autopos.receive</field>
+    <record model="ir.actions.act_window" id="action_delivery_list">
+        <field name="name">Delivery</field>
+        <field name="res_model">autopos.delivery</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">Click this to create the first receive</p>
+            <p class="oe_view_nocontent_create">Click this to create the first delivery</p>
         </field>
     </record>
 
-    <menuitem id="menu_receive_list" parent="autopos_inventory.menu_sub_operation" name="Receive" action="action_receive_list"/>
+    <menuitem id="menu_delivery_list" parent="autopos_inventory.menu_sub_operation" name="Delivery" action="action_delivery_list"/>
 </odoo>
